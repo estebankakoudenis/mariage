@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1E1410">
+<title>Notre mariage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root{--cr:#F7EFE2;--cr2:#EDE0CB;--tc:#B5543A;--tcd:#9A442D;--br:#1E1410;--bx:#5E1A24;--or:#C9A96A;--oc:#C8932B;--ol:#4B4F2A;--mr:#7A4A2B;
+--script:'Pinyon Script',cursive;--bod:'Bodoni Moda',serif;--cin:'Cinzel',serif;--jo:'Jost',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--cr);color:var(--br);font:300 17px/1.7 var(--jo);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body.lock{overflow:hidden}
+img{display:block;max-width:100%}
+section{padding:96px 28px;max-width:640px;margin:0 auto;text-align:center}
+h2{font:400 clamp(30px,8vw,42px)/1.2 var(--bod);margin-bottom:12px;color:var(--bx)}
+.k{font:400 12px var(--cin);letter-spacing:.28em;color:var(--tc);margin-bottom:14px;display:block}
+.lead{max-width:44ch;margin:0 auto 40px;opacity:.85}
+.btn{display:inline-block;background:var(--bx);color:var(--cr);font:500 13px var(--cin);letter-spacing:.2em;padding:16px 30px;border-radius:40px;border:0;text-decoration:none;cursor:pointer;transition:background .6s}
+.btn:hover,.btn:focus-visible{background:#4A1219}
+#itin{background:var(--ol)}#itin:hover{background:#3A3D20}
+a:focus-visible,button:focus-visible{outline:2px solid var(--tc);outline-offset:3px}
+
+/* Reveal */
+.rv{opacity:0;transform:translateY(24px);transition:opacity 1.4s ease,transform 1.4s ease}
+.rv.in{opacity:1;transform:none}
+.w{display:inline-block;opacity:0;transform:translateY(.55em);transition:opacity 1.2s ease,transform 1.2s ease;transition-delay:calc(var(--i)*130ms)}
+.in .w,.w.in{opacity:1;transform:none}
+
+/* Intro enveloppe */
+#intro{position:fixed;inset:0;z-index:50;background:var(--br);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:72px;transition:opacity 1.4s ease,visibility 1.4s}
+#intro.done{opacity:0;visibility:hidden}
+.env{position:relative;width:min(80vw,330px);aspect-ratio:3/2;background:var(--tcd);border-radius:4px;perspective:1000px;box-shadow:0 24px 50px rgba(0,0,0,.4)}
+.card{position:absolute;left:6%;right:6%;top:5%;height:90%;background:var(--cr);z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:transform 1.5s cubic-bezier(.4,0,.2,1) .9s;text-align:center;padding:8px}
+.card small{font:400 9px var(--cin);letter-spacing:.25em;color:var(--tc)}
+.card b{font:400 28px/1.1 var(--script);color:var(--bx);margin:6px 0 2px}
+.card i{font:italic 400 12px var(--bod)}
+.front{position:absolute;inset:0;z-index:2;background:var(--tc);clip-path:polygon(0 0,50% 54%,100% 0,100% 100%,0 100%);border-radius:4px}
+.flap{position:absolute;left:0;right:0;top:0;height:56%;background:#A74B32;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;z-index:3;transition:transform 1s ease,z-index 0s .5s}
+.seal{position:absolute;left:50%;top:50%;width:58px;height:58px;margin:-29px 0 0 -29px;border-radius:50%;z-index:4;background:radial-gradient(circle at 35% 30%,#8A2A38,#4A1019);box-shadow:0 3px 8px rgba(0,0,0,.45),inset 0 0 0 3px rgba(255,255,255,.08);display:grid;place-items:center;font:400 22px var(--script);color:#E6CF9B;transition:opacity .5s}
+.env.open .flap{transform:rotateX(180deg);z-index:0}
+.env.open .seal{opacity:0}
+.env.open .card{transform:translateY(-62%)}
+#intro .btn{background:var(--or);color:var(--br)}
+
+/* Accueil */
+.hero{position:relative;height:100vh;height:100dvh;min-height:560px;color:var(--cr);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;overflow:hidden}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(rgba(30,20,16,.4),rgba(94,26,36,.8))}
+.hero .k{color:var(--or)}
+.names{font:400 clamp(64px,19vw,104px)/.95 var(--script)}
+.names span{display:block;font-size:.5em;margin:4px 0}
+.names span:nth-child(2){color:var(--or)}
+.date{font:italic 400 20px var(--bod);margin:18px 0 8px}
+.hero p.lead{color:var(--cr);margin-bottom:28px;font-size:16px}
+.cd{display:flex;gap:14px;justify-content:center}
+.cd div{min-width:62px;border-top:1px solid var(--oc);padding-top:8px}
+.cd b{display:block;font:400 30px/1.1 var(--bod)}
+.cd small{font:400 10px var(--cin);letter-spacing:.2em}
+.hero .h{opacity:0;transform:translateY(20px);transition:opacity 1.6s ease,transform 1.6s ease;transition-delay:calc(var(--d)*350ms)}
+body.on .hero .h{opacity:1;transform:none}
+
+/* Histoire */
+.tl{position:relative;text-align:left;margin-top:40px;padding-left:38px}
+.tl::before,.tl .ln{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:1px;background:rgba(58,34,22,.18)}
+.tl .ln{background:var(--or);transform:scaleY(var(--p,0));transform-origin:top}
+.ev{position:relative;padding-bottom:44px}
+.ev:last-child{padding-bottom:0}
+.ev::before{content:"";position:absolute;left:-38px;top:8px;width:15px;height:15px;border-radius:50%;background:var(--cr);border:1px solid var(--or);transform:scale(0);transition:transform 1s ease .3s}
+.ev.in::before{transform:scale(1);background:var(--bx)}
+.ev small{font:400 12px var(--cin);letter-spacing:.2em;color:var(--mr)}
+.ev h3{font:400 24px var(--bod);margin:2px 0 4px}
+.ev p{opacity:.85}
+
+/* Galerie */
+.gal{background:var(--cr2);max-width:none;padding-left:0;padding-right:0}
+.gal .in-w{max-width:640px;margin:0 auto;padding:0 28px}
+.ph{overflow:hidden;width:78%;aspect-ratio:4/5;margin:0 0 44px;border-radius:6px}
+.ph:nth-child(odd){border-radius:999px 999px 6px 6px}
+.ph:nth-child(even){margin-left:auto}
+.ph img{width:100%;height:122%;object-fit:cover;margin-top:-11%;will-change:transform}
+
+/* Programme */
+.prog{margin-top:36px;text-align:left}
+.row{display:grid;grid-template-columns:86px 1fr;gap:16px;padding:20px 0;border-top:1px solid rgba(58,34,22,.18)}
+.row:last-child{border-bottom:1px solid rgba(58,34,22,.18)}
+.row time{font:400 26px var(--bod);color:var(--tc)}
+.row h3{font:500 14px var(--cin);letter-spacing:.14em;margin-top:5px}
+.row p{font-size:15px;opacity:.8}
+
+/* Lieu, tenue */
+.addr{font:italic 400 19px/1.5 var(--bod);margin-bottom:22px}
+.map{width:100%;height:280px;border:0;border-radius:6px;margin-bottom:26px;filter:sepia(.35)}
+.rsvp{background:var(--bx);color:var(--cr);max-width:none}
+.rsvp .in-w{max-width:560px;margin:0 auto}
+.rsvp .k{color:var(--or)}
+.rsvp h2{color:var(--cr)}
+.rsvp .btn{background:var(--or);color:var(--br);margin-top:6px}
+.rsvp p.dl{margin-top:22px;font:italic 400 17px var(--bod)}
+footer{background:var(--br);color:var(--cr);text-align:center;padding:0 28px 72px}
+footer .t{font:italic 400 20px var(--bod)}
+footer .ini{font:400 54px var(--script);margin:12px 0 2px;color:var(--or)}
+footer .hash{font:400 12px var(--cin);letter-spacing:.25em;color:var(--or)}
+.row,.row:last-child{border-color:rgba(200,147,43,.45)}
+
+@media (prefers-reduced-motion:reduce){
+html{scroll-behavior:auto}
+*,*::before,*::after{transition-duration:.01ms!important;transition-delay:0s!important;animation:none!important}
+.rv,.w,.hero .h{opacity:1;transform:none}
+}
+</style>
+</head>
+<body class="lock">
+
+<script>
+/* ============ TEXTES À MODIFIER ============ */
+const SITE={
+  prenom1:"Aboule", prenom2:"Roxane",
+  dateISO:"2026-10-31T15:00:00",            // date et heure du jour J (compte à rebours) : modifiez l’heure
+  dateTexte:"Samedi 31 octobre 2026",
+  salle:"CAFOP de Gagnoa", adresse:"" /* rue ou quartier, à ajouter si vous voulez */, ville:"Gagnoa", pays:"Côte d’Ivoire",
+  accueil:"Nous serions heureux de partager avec vous le plus beau jour de notre vie.",
+  histoire:[
+    {quand:"Été 2019", titre:"Notre rencontre", texte:"Un regard, un sourire, et tout a commencé."},
+    {quand:"Automne 2019", titre:"Premier rendez-vous", texte:"Un dîner qui devait durer une heure et qui a duré jusqu’à minuit."},
+    {quand:"Printemps 2026", titre:"La demande", texte:"Une question, un « oui » et le début d’une nouvelle page."}
+  ],
+  programme:[
+    {h:"15h00", t:"Accueil", p:"Retrouvailles et boissons de bienvenue"},
+    {h:"16h00", t:"Cérémonie", p:"Échange des vœux"},
+    {h:"17h30", t:"Photos", p:"Photos de famille et d’amis"},
+    {h:"19h00", t:"Repas", p:"Dîner, discours et soirée dansante"},
+    {h:"23h30", t:"Remerciements", p:"Un dernier toast avant de se quitter"}
+  ],
+  formulaire:"https://forms.gle/VOTRE-LIEN", limite:"25 octobre 2026",
+  hashtag:"#AbouleEtRoxane"
+};
+</script>
+
+<div id="intro">
+  <div class="env" id="env">
+    <div class="card"><small>NOUS NOUS MARIONS</small><b id="cn"></b><i id="cd"></i></div>
+    <div class="front"></div><div class="flap"></div><div class="seal" id="seal"></div>
+  </div>
+  <button class="btn" id="open">OUVRIR NOTRE INVITATION</button>
+</div>
+
+<main>
+<header class="hero" id="accueil">
+  <img src="photos/hero.jpg" data-b="photos/hero" alt="Les mariés" fetchpriority="high">
+  <span class="k h" style="--d:0">NOUS NOUS MARIONS</span>
+  <h1 class="names h" style="--d:1"><span id="n1"></span><span>&amp;</span><span id="n2"></span></h1>
+  <p class="date h" style="--d:2" id="dt"></p>
+  <p class="lead h" style="--d:3" id="ac"></p>
+  <div class="cd h" style="--d:4" id="cdw" aria-live="off"></div>
+</header>
+
+<section id="histoire">
+  <span class="k rv">NOTRE HISTOIRE</span>
+  <h2 class="sp">Comment tout a commencé</h2>
+  <div class="tl" id="tl"><div class="ln"></div></div>
+</section>
+
+<section class="gal" id="galerie">
+  <div class="in-w">
+    <span class="k rv">GALERIE</span>
+    <h2 class="sp" style="margin-bottom:40px">Quelques souvenirs</h2>
+    <div id="gal"></div>
+  </div>
+</section>
+
+<section id="programme">
+  <span class="k rv">LE PROGRAMME</span>
+  <h2 class="sp">Le déroulé de la journée</h2>
+  <div class="prog" id="prog"></div>
+</section>
+
+<section id="lieu">
+  <span class="k rv">LE LIEU</span>
+  <h2 class="sp">Où nous retrouver</h2>
+  <p class="addr rv" id="ad"></p>
+  <iframe class="map rv" id="map" title="Carte du lieu" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <a class="btn rv" id="itin" target="_blank" rel="noopener">OUVRIR L’ITINÉRAIRE</a>
+</section>
+
+<section class="rsvp" id="rsvp">
+  <div class="in-w">
+    <span class="k rv">CONFIRMER MA PRÉSENCE</span>
+    <h2 class="sp">Serez-vous des nôtres ?</h2>
+    <p class="lead rv">Merci de nous répondre avant la date limite.</p>
+    <a class="btn rv" id="fm" target="_blank" rel="noopener">JE RÉPONDS</a>
+    <p class="dl rv" id="lm"></p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <p class="t rv">Merci de faire partie de notre histoire</p>
+  <p class="ini rv" id="ini"></p>
+  <p class="hash rv" id="ht"></p>
+</footer>
+
+<script>
+const $=id=>document.getElementById(id), S=SITE;
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const ini=S.prenom1[0]+' & '+S.prenom2[0];
+const full=[S.salle,S.adresse,S.ville,S.pays].filter(Boolean).join(', ');
+document.title='Mariage de '+S.prenom1+' & '+S.prenom2;
+$('seal').textContent=S.prenom1[0]+S.prenom2[0];
+$('cn').textContent=S.prenom1+' & '+S.prenom2; $('cd').textContent=S.dateTexte;
+$('n1').textContent=S.prenom1; $('n2').textContent=S.prenom2;
+$('dt').textContent=S.dateTexte; $('ac').textContent=S.accueil;
+$('tl').insertAdjacentHTML('beforeend',S.histoire.map(e=>`<div class="ev rv"><small>${e.quand}</small><h3>${e.titre}</h3><p>${e.texte}</p></div>`).join(''));
+$('gal').innerHTML=[1,2,3,4,5].map(i=>`<figure class="ph rv"><img src="photos/galerie-${i}.jpg" data-b="photos/galerie-${i}" alt="Photo ${i}" loading="lazy"></figure>`).join('');
+$('prog').innerHTML=S.programme.map(p=>`<div class="row rv"><time>${p.h}</time><div><h3>${p.t.toUpperCase()}</h3><p>${p.p}</p></div></div>`).join('');
+$('ad').innerHTML=`<b style="font-weight:400">${S.salle}</b><br>${[S.adresse,S.ville].filter(Boolean).join(', ')}`;
+$('map').src='https://www.google.com/maps?q='+encodeURIComponent(full)+'&output=embed';
+$('itin').href='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(full);
+$('fm').href=S.formulaire; $('lm').textContent='Réponse souhaitée avant le '+S.limite;
+$('ini').textContent=ini; $('ht').textContent=S.hashtag.toUpperCase();
+
+/* Titres mot par mot */
+document.querySelectorAll('.sp').forEach(h=>{
+  h.innerHTML=h.textContent.split(' ').map((w,i)=>`<span class="w" style="--i:${i}">${w}</span>`).join(' ');
+});
+
+/* Compte à rebours */
+const cdw=$('cdw'),target=new Date(S.dateISO).getTime();
+function tick(){
+  let d=Math.max(0,target-Date.now())/1000;
+  const v=[['JOURS',Math.floor(d/86400)],['HEURES',Math.floor(d/3600)%24],['MIN',Math.floor(d/60)%60],['SEC',Math.floor(d)%60]];
+  cdw.innerHTML=v.map(x=>`<div><b>${String(x[1]).padStart(2,'0')}</b><small>${x[0]}</small></div>`).join('');
+}
+tick(); setInterval(tick,1000);
+
+/* Apparition au défilement */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('.rv,.sp').forEach(el=>io.observe(el));
+
+/* Frise et profondeur */
+const tl=$('tl'),imgs=[...document.querySelectorAll('.ph img')];
+function onScroll(){
+  const vh=innerHeight,r=tl.getBoundingClientRect();
+  tl.style.setProperty('--p',Math.min(1,Math.max(0,(vh*.7-r.top)/r.height)));
+  imgs.forEach(im=>{const b=im.parentNode.getBoundingClientRect();
+    im.style.transform=`translateY(${((b.top+b.height/2-vh/2)*-.09).toFixed(1)}px)`});
+}
+if(!reduce){let t;addEventListener('scroll',()=>{if(!t)t=requestAnimationFrame(()=>{onScroll();t=0})},{passive:true});onScroll()}
+else tl.style.setProperty('--p',1);
+
+/* Photos : accepte .jpg, .jpeg, .png, .webp */
+const EX=['jpg','jpeg','png','webp','JPG','JPEG','PNG'];
+document.querySelectorAll('img[data-b]').forEach(im=>{
+  im.dataset.i=0;
+  const next=()=>{const i=+im.dataset.i+1;if(i<EX.length){im.dataset.i=i;im.src=im.dataset.b+'.'+EX[i]}};
+  im.addEventListener('error',next);
+  if(im.complete&&im.naturalWidth===0)next();
+});
+
+/* Ouverture de l'enveloppe */
+$('open').onclick=function(){
+  this.disabled=true;this.style.opacity=0;this.style.transition='opacity .6s';
+  $('env').classList.add('open');
+  setTimeout(()=>{$('intro').classList.add('done');document.body.classList.remove('lock');document.body.classList.add('on');scrollTo(0,0)},reduce?200:3200);
+};
+</script>
+</body>
+</html>
